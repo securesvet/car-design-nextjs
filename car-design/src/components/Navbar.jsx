@@ -3,12 +3,12 @@ import Image from "next/image";
 
 const Navbar = ({logoImage, languageImage}) => {
     return (
-        <nav className="bg-white">
-            <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <nav className="bg-white fixed w-full z-10">
+            <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 backdrop-blur">
                 <a href="#" className="flex items-center space-x-1 rtl:space-x-reverse">
                     <Image
                         src={logoImage}
-                        className="h-16 w-16"
+                        className="h-16 w-16 hover:shadow-md hover:cursor-pointer transition-shadow rounded-md"
                         alt="GAZ logo"
                     />
                 </a>
