@@ -3,8 +3,8 @@ import Image from "next/image";
 
 const Navbar = ({logoImage, languageImage}) => {
     return (
-        <nav className="bg-white fixed w-full z-10">
-            <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 backdrop-blur">
+        <nav className="bg-white fixed w-full z-10 backdrop-filter backdrop-blur-lg bg-opacity-80">
+            <div className="w-full flex flex-wrap items-center justify-between mx-auto p-4">
                 <a href="#" className="flex items-center space-x-1 rtl:space-x-reverse">
                     <Image
                         src={logoImage}
@@ -17,7 +17,6 @@ const Navbar = ({logoImage, languageImage}) => {
                         <li>
                             <Image src={languageImage} alt="Language"
                                    className="block h-16 w-16 hover:shadow-md hover:cursor-pointer p-2 transition-shadow rounded-md"/>
-                            {/*<a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>*/}
                         </li>
                     </ul>
                 </div>

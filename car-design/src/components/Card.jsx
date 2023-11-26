@@ -1,15 +1,17 @@
 import React from 'react';
+import OptionConstructor from "@/components/OptionConstructor";
 
-const Card = ({title, content}) => {
+const Card = ({title, content, optionObject}) => {
     return (
-        <div className="card w-96 max-h-56 bg-neutral text-neutral-content mt-[10rem] items-center justify-center">
-            <div className="card-body items-center text-center">
+        <div className="card max-w-[30rem] max-h-56 m-[0_auto] bg-neutral text-neutral-content mt-[10rem]">
+            <div className="card-body items-center justify-center text-center">
                 <h2 className="card-title">{title}</h2>
-                <p>{content}</p>
-                <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Accept</button>
-                    <button className="btn btn-ghost">Deny</button>
+                <div className="flex gap-5 flex-wrap justify-center">
+                    {optionObject.map((_) => (
+                        <OptionConstructor/>
+                    ))}
                 </div>
+                <p>{content}</p>
             </div>
         </div>
     );
