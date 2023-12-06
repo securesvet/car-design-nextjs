@@ -39,21 +39,25 @@ export default function Constructor() {
                     price: 1000,
                 },
         };
-    const wheelProperties = [
-        {
-            id: 0,
-            option: 'default',
-            src: wheelsDefault,
-        },
-        {
-            id: 1,
-            option: 'new',
-            src: wheelsSecond,
-        },
-    ];
+    const wheelProperties = {
+        default:
+            {
+                id: 0,
+                option: 'default',
+                src: wheelsDefault,
+                price: 0,
+            },
+        new:
+            {
+                id: 1,
+                option: 'new',
+                src: wheelsSecond,
+                price: 200,
+            },
+        };
     const imagesImported = {black: carBlack, blue: carBlue, white: carWhite};
     const [selectedColor, setSelectedColor] = useState(Object.keys(colorProperties)[0]);
-    const [selectedWheel, setSelectedWheel] = useState(wheelProperties[0].option);
+    const [selectedWheel, setSelectedWheel] = useState(Object.keys(wheelProperties)[0]);
 
     const handleColorChange = (event) => {
         if (selectedColor !== event.currentTarget.value) {
@@ -80,13 +84,11 @@ export default function Constructor() {
                   <div className="overflow-x-hidden overflow-y-scroll lg:first:mt-[10rem] last:mb-[5rem] last:p-[5rem] flex flex-col justify-center items-center">
                       <h3 className="text-2xl whitespace-nowrap">Create Your Own</h3>
                       <h2 className="text-5xl font-bold">Volga</h2>
-                      <Card title="Color" content="Free" optionObject={colorProperties} selectedOption={selectedColor} handle={handleColorChange}/>
-                      <Card title="Wheel" content="Free" optionObject={wheelProperties} selectedOption={selectedWheel} handle={handleWheelChange}/>
-                      <Modal className="mt-10" title="Your Order" content="Your order information:
-                      lorem ipsum.
-                      lorem ipsum.
-                      lorem ipsum.
-                      lorem ipsum."/>
+                      <Card title="Color" content={colorProperties[selectedColor].price === 0 ? "Free" : `${colorProperties[selectedColor].price}$`} optionObject={colorProperties} selectedOption={selectedColor} handle={handleColorChange}/>
+                      <Card title="Wheel" content={wheelProperties[selectedWheel].price === 0 ? "Free" : `${wheelProperties[selectedWheel].price}$`} optionObject={wheelProperties} selectedOption={selectedWheel} handle={handleWheelChange}/>
+                      <Modal className="mt-10" title="Your Order"
+                      color={selectedColor}
+                      wheel={selectedWheel}/>
                   </div>
 
               </div>
