@@ -3,8 +3,8 @@ import Image from "next/image";
 
 const Language = ({languageImage}) => {
     return (
-        <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-            <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white">
+        <div className="block w-auto" id="navbar-default">
+            <ul className="font-medium flex p-0 mt-4 border rounded-lg flex-row space-x-8 space-x-reverse mt-0 border-0 bg-white">
                 <li>
                     <details className="dropdown">
                         <summary className="h-16 w-16 flex justify-center items-center">
