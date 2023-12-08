@@ -4,11 +4,16 @@ import languageIcon from '../../../public/images/language.svg'
 import blackColor from '../../../public/images/color/black.svg'
 import blueColor from '../../../public/images/color/blue.svg'
 import whiteColor from '../../../public/images/color/white.svg'
-import carBlack from '../../../public/images/cars/car_black.png'
-import carBlue from '../../../public/images/cars/car_blue.png'
-import carWhite from '../../../public/images/cars/car_white.png'
 import wheelsDefault from '../../../public/images/wheels/wheels-1.png';
 import wheelsSecond from '../../../public/images/wheels/wheels-2.png';
+import carBlackDefault from '../../../public/images/cars/car_black_first_wheel.png'
+import carBlueDefault from '../../../public/images/cars/car_blue_first_wheel.png'
+import carWhiteDefault from '../../../public/images/cars/car_white_first_wheel.png'
+import carBlackNew from '../../../public/images/cars/car_black_second_wheel.png'
+import carBlueNew from '../../../public/images/cars/car_blue_second_wheel.png'
+import carWhiteNew from '../../../public/images/cars/car_white_second_wheel.png'
+
+
 import Navbar from "@/components/Navbar";
 import React, {useState} from "react";
 import Card from "@/components/Card";
@@ -55,9 +60,30 @@ export default function Constructor() {
                 price: 200,
             },
         };
-    const imagesImported = {black: carBlack, blue: carBlue, white: carWhite};
-    const [selectedColor, setSelectedColor] = useState(Object.keys(colorProperties)[0]);
-    const [selectedWheel, setSelectedWheel] = useState(Object.keys(wheelProperties)[0]);
+    const imagesImported =
+        {
+        black:
+            {
+            default:
+                carBlackDefault,
+            new:
+                carBlackNew,
+            },
+        blue:
+            {
+            default:
+                carBlueDefault,
+            new:
+                carBlueNew,
+            },
+        white:
+            {
+            default:
+                carWhiteDefault,
+            new:
+                carWhiteNew,
+            },
+    };
 
     const handleColorChange = (event) => {
         if (selectedColor !== event.currentTarget.value) {
@@ -70,14 +96,18 @@ export default function Constructor() {
             setSelectedWheel(event.currentTarget.value);
         }
     }
-  return (
+
+    const [selectedColor, setSelectedColor] = useState(Object.keys(colorProperties)[0]);
+    const [selectedWheel, setSelectedWheel] = useState(Object.keys(wheelProperties)[0]);
+
+    return (
       <main className="overflow-hidden">
           <Navbar logoImage={logo} languageImage={languageIcon}/>
           <div className="lg:hidden md:block h-[7rem] md:max-w-screen bg-white "></div>
           <section className="grid lg:grid-cols-[2fr_1fr] lg:grid-rows-1 md:grid-cols-1 md:grid-rows-2 ">
               <div className="bg-white lg:max-h-screen lg:min-h-screen lg:w-2fr md:w-1fr overflow-hidden">
                       <div className="lg:min-h-screen flex justify-center items-center">
-                        <Image className="" src={imagesImported[selectedColor]} alt="Car"/>
+                        <Image className="" src={imagesImported[selectedColor][selectedWheel]} alt="Car"/>
                       </div>
               </div>
               <div className="bg-white text-black lg:max-h-screen md:1fr shadow-2xl overflow-y-scroll">
