@@ -1,10 +1,22 @@
 "use client"
 import React, {useState} from 'react';
 
+const validateEmail = (email) => {
+    return String(email)
+        .toLowerCase()
+        .match(
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
+};
 const Modal = ({title, className, color, wheel}) => {
 
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+        console.log(event.target.value);
+    }
     const [address, setAddress] = useState('');
     const [email, setEmail] = useState('');
+
 
 
     return (
@@ -15,8 +27,8 @@ const Modal = ({title, className, color, wheel}) => {
                     <form method="dialog">
                         {/* if there is a button in form, it will close the modal */}
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-
                     </form>
+                    <form method="dialog">
                     <h3 className="font-bold text-lg">{title}</h3>
                     <div className="inline-block">
                         <label>
@@ -25,12 +37,13 @@ const Modal = ({title, className, color, wheel}) => {
                             <span>Your wheels: {wheel.toUpperCase()}</span>
                             <br/>
                             <span>Email: </span>
-                            <input className="input input-bordered w-full max-w-xs"
+                            <input className="input input-bordered w-full max-w-xs block"
                                 required
                                 type="email"
-                                onChange={(e) => {setEmail(e.target.value); console.log(e.target.value)}}
+                                onChange={(e) => {handleEmailChange(e)}}
                                 value={email}
                             />
+                            <span className="text-red-700 inline-block">{!validateEmail(email) ? ('Email is incorrect') : ('')}</span>
                             <br/>
                         </label>
                         <label>
@@ -43,9 +56,12 @@ const Modal = ({title, className, color, wheel}) => {
                             />
                         </label>
                     </div>
+
+                    </form>
                     <label className="block mt-2 flex justify-center items-center">
-                        <button className="btn" onClick={() => {console.log('Ordered')}}>Pay</button>
+                        <button className="btn">Pay</button>
                     </label>
+
                 </div>
             </dialog>
         </>
