@@ -43,7 +43,7 @@ const Modal = ({title, className, color, wheel}) => {
                                 onChange={(e) => {handleEmailChange(e)}}
                                 value={email}
                             />
-                            <span className="text-red-700 inline-block">{!validateEmail(email) ? ('Email is incorrect') : ('')}</span>
+                            <span className="text-red-700 inline-block">{(!validateEmail(email) && email.length !== 0) ? ('Email is incorrect') : ('')}</span>
                             <br/>
                         </label>
                         <label>
