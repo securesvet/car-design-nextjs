@@ -1,5 +1,6 @@
 "use client"
 import React, {useState} from 'react';
+import axios from "axios";
 
 const validateEmail = (email) => {
     return String(email)
@@ -14,6 +15,22 @@ const Modal = ({title, className, color, wheel}) => {
         setEmail(event.target.value);
         console.log(event.target.value);
     }
+
+    const submit = async(e) => {
+        e.preventDefault();
+
+        try {
+            console.log('yeah buddy');
+            await axios.post('http://localhost:3000/', {
+                color, wheel, email, address,
+            })
+        }
+        catch(e) {
+            console.log(e);
+        }
+
+    }
+
     const [address, setAddress] = useState('');
     const [email, setEmail] = useState('');
 
@@ -36,6 +53,7 @@ const Modal = ({title, className, color, wheel}) => {
                             <br/>
                             <span>Your wheels: {wheel.toUpperCase()}</span>
                             <br/>
+
                             <span>Email: </span>
                             <input className="input input-bordered w-full max-w-xs block"
                                 required
@@ -59,7 +77,7 @@ const Modal = ({title, className, color, wheel}) => {
 
                     </form>
                     <label className="block mt-2 flex justify-center items-center">
-                        <button className="btn">Pay</button>
+                        <button className="btn" onClick={submit}>Pay</button>
                     </label>
 
                 </div>
