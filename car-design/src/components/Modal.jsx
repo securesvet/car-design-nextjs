@@ -16,17 +16,15 @@ const Modal = ({title, className, color, wheel}) => {
         console.log(event.target.value);
     }
 
-    const submit = async(e) => {
-        e.preventDefault();
-
+    const submit = async() => {
         try {
             console.log('yeah buddy');
-            await axios.post('http://localhost:3000/', {
+            await axios.post('http://localhost:3001/addOrder', {
                 color, wheel, email, address,
             })
         }
         catch(e) {
-            console.log(e);
+            console.log("Error occurred, while trying to submit form: ", e);
         }
 
     }
@@ -42,7 +40,6 @@ const Modal = ({title, className, color, wheel}) => {
             <dialog id="my_modal_3" className="modal text-lg p-2">
                 <div className="modal-box">
                     <form method="dialog">
-                        {/* if there is a button in form, it will close the modal */}
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     </form>
                     <form method="dialog">
