@@ -9,6 +9,11 @@ const validateEmail = (email) => {
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         ) !== null;
 };
+
+const validateAddress = (address) => {
+    return address !== "";
+}
+
 const Modal = ({title, className, color, wheel}) => {
 
     const handleEmailChange = (event) => {
@@ -22,6 +27,12 @@ const Modal = ({title, className, color, wheel}) => {
             await axios.post('http://localhost:3001/addOrder', {
                 color, wheel, email, address,
             })
+            if (validateEmail(email) && validateAddress(address)) {
+                setSuccess(true);
+            }
+            else {
+
+            }
         }
         catch(e) {
             console.log("Error occurred, while trying to submit form: ", e);
@@ -33,7 +44,7 @@ const Modal = ({title, className, color, wheel}) => {
     const [email, setEmail] = useState('');
 
 
-
+    const [successCheck, setSuccess] = useState(false);
     return (
         <>
             <button className={`btn bg-neutral-content text-black justify-center items-center ${className}`} onClick={()=>document.getElementById('my_modal_3').showModal()}>{title}</button>
@@ -74,8 +85,9 @@ const Modal = ({title, className, color, wheel}) => {
 
                     </form>
                     <label className="block mt-2 flex justify-center items-center">
-                        <button className="btn" onClick={submit}>Pay</button>
+                        <button className="btn" onClick={submit} disabled={!validateEmail(email) || !validateAddress(address)}>Pay</button>
                     </label>
+                    <span className="block flex justify-center items-center text-green-600">{successCheck ? "Successfully Ordered" : ""}</span>
 
                 </div>
             </dialog>

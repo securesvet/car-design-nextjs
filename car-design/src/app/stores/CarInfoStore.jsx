@@ -2,7 +2,7 @@ import {makeAutoObservable} from "mobx";
 
 class CarInfoStore {
     color = "black";
-    wheels = "1";
+    wheels = "default";
 
     constructor() {
         makeAutoObservable(this)
